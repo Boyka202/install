@@ -37,3 +37,6 @@ sudo do-release-upgrade -d
 sudo add-apt-repository ppa:damask/ppa
 sudo apt update
 sudo apt install damask
+
+ERROR: ppa 'damask/ppa' not found (use --login if private)
+
