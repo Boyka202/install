@@ -1,0 +1,51 @@
+# Material file for Austenite at 900°C (1173 K) - Tuned for Softening
+phase:
+  Austenite:
+    lattice: cF
+    rho: 7874.0
+    mechanical:
+      output: [F, P, F_e, F_p, L_p, O, xi_sl, gamma_sl, rho_mob, rho_dip, Lambda_sl]
+      elastic:
+        type: Hooke
+        C_11: 204.0e+9
+        C_11,T: -3.5e7
+        C_11,T^2: -2.0e4
+        C_12: 137.0e+9
+        C_12,T: -2.0e7
+        C_12,T^2: 1.0e3
+        C_44: 126.0e+9
+        C_44,T: -2.5e7
+        C_44,T^2: -1.5e3
+        T_ref: 1273 # Keeping T_ref consistent at 1000C for elastic/thermal
+      plastic:
+        type: dislotwin
+        N_sl: [12]
+        f_edge: [1.0]
+        b_sl: [2.52e-10]
+        rho_mob_0: [5.0e+11] # Still relatively high
+        rho_dip_0: [5.0e+11] # Still relatively high
+        v_0: [1.0e+3]
+        Q_sl: [1.75e-19] # As previously adjusted
+        tau_0: [25.0e+6] # From your 900C table
+        p_sl: [0.325]
+        q_sl: [1.65] # Increased slightly to enhance annihilation
+        i_sl: [25.0]
+        B: [0.008] # As previously adjusted
+        D_a: 11.0 # Increased to enhance annihilation distance
+        Q_cl: 4.2e-19 # Reduced to enhance climb (recovery)
+        D: 40.e-6 # As previously adjusted
+        h_sl-sl: [0.225, 0.225, 0.75, 0.225, 0.75, 0.75, 0.225] # Tuned for 900C stress level, might need slight reduction if softening isn't enough
+    thermal:
+      output: [T]
+      K_11: 30.0
+      K_11,T: -1.216e-1
+      K_11,T^2: 1.327e-4
+      K_11,T^3: -7.993e-8
+      T_ref: 1273 # Keeping T_ref consistent at 1000C for elastic/thermal
+      C_p: 650.0
+      source:
+        - type: externalheat
+          f: [3.0e6, 3.0e6]
+          t: [0, 45]
+
+---

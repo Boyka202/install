@@ -1,0 +1,49 @@
+# Material file for Austenite at 1200°C (1473 K) - Tuned for Softening
+phase:
+  Austenite:
+    lattice: cF
+    rho: 7874.0
+    mechanical:
+      output: [F, P, F_e, F_p, L_p, O, xi_sl, gamma_sl, rho_mob, rho_dip, Lambda_sl]
+      elastic:
+        type: Hooke
+        C_11: 204.0e+9
+        C_11,T: -3.5e7
+        C_11,T^2: -2.0e4
+        C_12: 137.0e+9
+        C_12,T: -2.0e7
+        C_12,T^2: 1.0e3
+        C_44: 126.0e+9
+        C_44,T: -2.5e7
+        C_44,T^2: -1.5e3
+        T_ref: 1273 # Keeping T_ref consistent at 1000C for elastic/thermal
+      plastic:
+        type: dislotwin
+        N_sl: [12]
+        f_edge: [1.0]
+        b_sl: [2.52e-10]
+        rho_mob_0: [2.0e+11] # Further reduced
+        rho_dip_0: [2.0e+11] # Further reduced
+        v_0: [1.0e+3]
+        Q_sl: [1.6e-19] # Further reduced
+        tau_0: [18.0e+6] # From your 1200C table
+        p_sl: [0.325]
+        q_sl: [1.8] # Increased to enhance annihilation (more than 1100C)
+        i_sl: [25.0]
+        B: [0.01] # Increased to max suggested
+        D_a: 14.0 # Further increased to enhance annihilation distance (more than 1100C)
+        Q_cl: 3.6e-19 # Further reduced to enhance climb (more than 1100C)
+        D: 50.e-6 # Further increased
+        h_sl-sl: [0.15, 0.15, 0.45, 0.15, 0.45, 0.45, 0.15] # Proportionally reduced from 1100C
+    thermal:
+      output: [T]
+      K_11: 30.0
+      K_11,T: -1.216e-1
+      K_11,T^2: 1.327e-4
+      K_11,T^3: -7.993e-8
+      T_ref: 1273 # Keeping T_ref consistent at 1000C for elastic/thermal
+      C_p: 650.0
+      source:
+        - type: externalheat
+          f: [3.0e6, 3.0e6]
+          t: [0, 45]
