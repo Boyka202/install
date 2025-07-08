@@ -63,9 +63,6 @@ cd build
 cmake ..
 make -j$(nproc)
 
-cd ../python
-pip3 install -r requirements.txt
-pip3 install .
 
 damask --version
 
