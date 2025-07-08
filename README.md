@@ -40,3 +40,33 @@ sudo apt install damask
 
 ERROR: ppa 'damask/ppa' not found (use --login if private)
 
+ddddddd
+sudo bash -c 'cat > /etc/apt/sources.list <<EOF
+deb http://old-releases.ubuntu.com/ubuntu lunar main restricted universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu lunar-updates main restricted universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu lunar-security main restricted universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu lunar-backports main restricted universe multiverse
+EOF'
+
+sudo apt update
+sudo apt upgrade
+
+sudo do-release-upgrade -d
+
+git clone https://github.com/damask-msc/damask.git
+cd damask
+
+sudo apt install -y cmake gfortran build-essential libfftw3-dev libhdf5-dev liblapack-dev libblas-dev python3 python3-pip
+
+mkdir build
+cd build
+cmake ..
+make -j$(nproc)
+
+cd ../python
+pip3 install -r requirements.txt
+pip3 install .
+
+damask --version
+
+
