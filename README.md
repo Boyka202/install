@@ -19,3 +19,21 @@ cd damask
 mkdir build && cd build
 cmake ..
 make -j$(nproc)
+
+
+sudo nano /etc/apt/sources.list
+http://archive.ubuntu.com/ubuntu
+http://security.ubuntu.com/ubuntu
+http://old-releases.ubuntu.com/ubuntu
+deb http://old-releases.ubuntu.com/ubuntu lunar main restricted universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu lunar-updates main restricted universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu lunar-backports main restricted universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu lunar-security main restricted universe multiverse
+sudo apt update
+sudo apt upgrade
+sudo do-release-upgrade -d
+
+
+sudo add-apt-repository ppa:damask/ppa
+sudo apt update
+sudo apt install damask
